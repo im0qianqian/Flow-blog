@@ -1,25 +1,17 @@
 {% include 'header.html' %}
     <h1>用户输入</h1>
     <img src="/static/images/logo.png"/>
-    <form action="/index/" method="post">
-        <input type="text" name="username"/>
-        <input type="password" name="password"/>
-        <input type="submit" value="submit"/>
-    </form>
-    <hr/>
-    <table>
-        <thead>
-            <th>user</th>
-            <th>password</th>
-        </thead>
-        <tbody>
-            {% for line in data %}
-                <tr>
-                    <td>{{ line.user }}</td>
-                    <td>{{ line.pwd }}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    {% for key in user_list %}
+        {{ key }}
+        {% if 5 <= key and key <= 10 %}
+            啦啦
+        {% endif %}
+    {% endfor %}
+    {{ request.GET.urlencode }}
+    {% if request.user.is_authenticated %}
+    lala
+    {% else %}
+    st
+    {% endif %}
 </body>
 </html>

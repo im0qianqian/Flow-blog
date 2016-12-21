@@ -6,5 +6,5 @@ from mysite import models
 
 def index(request):
     # return HttpResponse(a+"Hello world!"+b)
-    user_list = []
-    return render(request,"index.html",{"data":user_list})
+    user_list = range(0,20)
+    return render(request,"index.html",{"user_list":user_list})
