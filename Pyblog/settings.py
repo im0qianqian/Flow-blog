@@ -11,10 +11,10 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 """
 
 import os
+from config import *
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/dev/howto/deployment/checklist/
@@ -27,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,7 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'mysite',
+    'flow',
 ]
 
 MIDDLEWARE = [
@@ -55,7 +54,7 @@ ROOT_URLCONF = 'Pyblog.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'mysite/../templates')]
+        'DIRS': [os.path.join(BASE_DIR, 'flow/../templates')]
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -71,21 +70,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Pyblog.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'pyblog',
-        'USER':'root',
-        'PASSWORD':'im0qianqian',
-        'HOST':'127.0.0.1',
-        'PORT':'3306',
+        'NAME': DATABASE_CONFIG['NAME'],
+        'USER': DATABASE_CONFIG['USER'],
+        'PASSWORD': DATABASE_CONFIG['PASSWORD'],
+        'HOST': DATABASE_CONFIG['HOST'],
+        'PORT': DATABASE_CONFIG['PORT'],
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-password-validators
@@ -105,7 +102,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/dev/topics/i18n/
 
@@ -118,7 +114,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/dev/howto/static-files/
