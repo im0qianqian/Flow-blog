@@ -1,12 +1,15 @@
 from django.shortcuts import render, redirect
+from .config import *
 from .models import *
 from django.http import Http404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.views.generic import ListView
+from django.contrib.syndication.views import Feed
 
 
 def home(request):
-    posts = Post.objects.all()  # 获取全部的Article对象
-    paginator = Paginator(posts, 2)  # 每页显示两个
+    posts = Post.objects.filter(post_status=True)
+    paginator = Paginator(posts, MAXIMUM_OF_PAGE)
     page = request.GET.get('page')
     try:
         post_list = paginator.page(page)
@@ -20,6 +23,8 @@ def home(request):
 def detail(request, id):
     try:
         post = Post.objects.get(id=str(id))
+        post.post_views += 1
+        post.save()
     except Post.DoesNotExist:
         raise Http404
     return render(request, 'post.html', {'post': post})
@@ -27,7 +32,7 @@ def detail(request, id):
 
 def archives(request):
     try:
-        post_list = Post.objects.all()
+        post_list = Post.objects.filter(post_status=True)
     except Post.DoesNotExist:
         raise Http404
     return render(request, 'archives.html', {'post_list': post_list,
@@ -48,7 +53,7 @@ def blog_search(request):
         if not s:
             return render(request, 'home.html')
         else:
-            post_list = Post.objects.filter(title__icontains=s)
+            post_list = Post.objects.filter(post_title__icontains=s)
             if len(post_list) == 0:
                 return render(request, 'archives.html', {'post_list': post_list,
                                                          'error': True})
@@ -56,9 +61,6 @@ def blog_search(request):
                 return render(request, 'archives.html', {'post_list': post_list,
                                                          'error': False})
     return redirect('/')
-
-
-from django.contrib.syndication.views import Feed  # 注意加入import语句
 
 
 class RSSFeed(Feed):
@@ -77,3 +79,11 @@ class RSSFeed(Feed):
 
     def item_description(self, item):
         return item.post_content
+
+
+def post_meta(request, alias):
+    try:
+        meta_list = PostMeta.objects.filter(post_alias=alias)
+    except Post.DoesNotExist:
+        raise Http404
+    return render(request, 'postmeta.html', {'meta_list': meta_list[0]})

@@ -7,3 +7,7 @@ from flow.models import *
 
 admin.site.register(Category)
 admin.site.register(Post)
+admin.site.register(Tag)
+admin.site.register(PostMeta)
+admin.site.register(Link)
+admin.site.register(Comment)
