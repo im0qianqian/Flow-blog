@@ -8,12 +8,12 @@
             {% for post in post_list %}
                 <section class="post">
                     <header class="post-header">
-                        <h4 class="post-title"><a href="{% url "detail" id=post.id %}">{{ post.post_title }}</a></h4>
+                        <h4 class="post-title"><a href="{% url "detail" id=post.id %}">{{ post.title }}</a></h4>
                         <p class="post-meta">
-                            Time: <a class="post-author" href="#">{{ post.post_date |date:"Y /m /d" }}</a>
-                            {{ post.post_category }}
+                            Time: <a class="post-author" href="#">{{ post.datetime |date:"Y /m /d" }}</a>
+                            {{ post.category }}
                             <a class="post-category post-category-js"
-                               href="{% url "search_tag" tag=post.post_category %}">{{ post.post_category }}</a>
+                               href="{% url "search_tag" tag=post.category %}">{{ post.category }}</a>
                         </p>
                     </header>
                 </section>

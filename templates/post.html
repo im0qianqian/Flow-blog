@@ -5,17 +5,17 @@
     <div class="posts">
         <section class="post">
             <header class="post-header">
-                <h2 class="post-title">{{ post.post_title }}</h2>
+                <h2 class="post-title">{{ post.title }}</h2>
                 <p class="post-meta">
-                    @ {{ post.post_author }} / {{ post.post_date | date:"Y /m /d" }}
-                    / <span class="post-category post-category-js">{{ post.post_category }}</span>
-                    {% if post.post_image %}
-                        <div style="text-align: center;"><img style="margin: 2% auto;" src="{{ post.post_image }}"/></div>
+                    @ {{ post.author }} / {{ post.datetime | date:"Y /m /d" }}
+                    / <span class="post-category post-category-js">{{ post.category }}</span>
+                    {% if post.image %}
+                        <div style="text-align: center;"><img style="margin: 2% auto;" src="{{ post.image }}"/></div>
                     {% endif %}
                 </p>
             </header>
             <div class="post-description">
-                {{ post.post_content|custom_markdown }}
+                {{ post.content|custom_markdown }}
             </div>
         </section>
         {% include "duoshuo.html" %}

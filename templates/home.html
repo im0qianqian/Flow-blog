@@ -5,18 +5,18 @@
         {% for post in post_list %}
             <section class="post">
                 <header class="post-header">
-                    <h1 class="post-title"><a href="{% url "detail" id=post.id %}">{{ post.post_title }}</a></h1>
+                    <h1 class="post-title"><a href="{% url "detail" id=post.id %}">{{ post.title }}</a></h1>
                     <div class="post-meta">
-                        @ {{ post.post_author }} / {{ post.post_date | date:"Y /m /d" }}
-                        / <span class="post-category post-category-js">{{ post.post_category }}</span>
-                        {% if post.post_image %}
-                            <div><img class="post-images" src="{{ post.post_image }}"/></div>
+                        @ {{ post.author }} / {{ post.datetime | date:"Y /m /d" }}
+                        / <span class="post-category post-category-js">{{ post.category }}</span>
+                        {% if post.image %}
+                            <div><img class="post-images" src="{{ post.image }}"/></div>
                         {% endif %}
                     </div>
                 </header>
                 <div class="post-description">
                     <p>
-                        {{ post.post_excerpt }}
+                        {{ post.excerpt }}
                     </p>
                 </div>
                 <a class="pure-button" href="{% url "detail" id=post.id %}">Read More >>> </a>

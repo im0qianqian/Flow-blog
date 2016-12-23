@@ -5,10 +5,10 @@
     <div class="posts">
         <section class="post">
             <header class="post-header">
-                <h2 class="post-title">{{ meta_list.post_title }}</h2>
+                <h2 class="post-title">{{ post.title }}</h2>
             </header>
             <div class="post-description">
-                {{ meta_list.post_content|custom_markdown }}
+                {{ post.content|custom_markdown }}
             </div>
         </section>
         {% include "duoshuo.html" %}

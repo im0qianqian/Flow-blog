@@ -18,14 +18,14 @@ from django.core.urlresolvers import reverse
 
 
 class PostMeta(models.Model):
-    post_title = models.CharField('Title', max_length=80, blank=True)
-    post_content = models.TextField('Content', blank=True)
-    post_alias = models.CharField('Alias', max_length=80, blank=True, unique=True, default=post_title)
-    post_date = models.DateTimeField('Created time', auto_now_add=True, editable=True)
-    post_modified = models.DateTimeField('Last Modified', auto_now=True, editable=True)
+    title = models.CharField('Title', max_length=80, blank=True)
+    content = models.TextField('Content', blank=True)
+    alias = models.CharField('Alias', max_length=80, blank=True, unique=True, default=title)
+    datetime = models.DateTimeField('Created time', auto_now_add=True, editable=True)
+    modified = models.DateTimeField('Last Modified', auto_now=True, editable=True)
 
     def __str__(self):
-        return self.post_title
+        return self.title
 
 
 class Post(models.Model):
@@ -33,22 +33,22 @@ class Post(models.Model):
         (True, 'Public'),
         (False, 'Hide')
     )
-    post_author = models.ForeignKey(User)
-    post_date = models.DateTimeField('Created time', auto_now_add=True, editable=True)
-    post_modified = models.DateTimeField('Last Modified', auto_now=True, editable=True)
-    post_title = models.CharField('Title', max_length=80, blank=True)
-    post_content = models.TextField('Content', blank=True)
-    post_excerpt = models.TextField('Excerpt', blank=True)
-    post_status = models.BooleanField('Article status', default=False, choices=STATUS_CHOICES)
-    post_password = models.CharField('Password', max_length=80, blank=True)
-    post_alias = models.CharField('Alias', max_length=80, blank=True, unique=True, default=post_title)
-    post_category = models.ForeignKey('Category')
-    post_tag = models.ManyToManyField('Tag', blank=True)
-    post_views = models.PositiveIntegerField('Pageviews', editable=False, default=0)
-    post_image = models.URLField('Image', blank=True)
+    author = models.ForeignKey(User)
+    datetime = models.DateTimeField('Created Time', auto_now_add=True, editable=True)
+    modified = models.DateTimeField('Last Modified', auto_now=True, editable=True)
+    title = models.CharField('Title', max_length=80, blank=True)
+    content = models.TextField('Content', blank=True)
+    excerpt = models.TextField('Excerpt', blank=True)
+    status = models.BooleanField('Article status', default=False, choices=STATUS_CHOICES)
+    password = models.CharField('Password', max_length=80, blank=True)
+    alias = models.CharField('Alias', max_length=80, blank=True, unique=True, default=title)
+    category = models.ForeignKey('Category')
+    tag = models.ManyToManyField('Tag', blank=True)
+    views = models.PositiveIntegerField('Pageviews', editable=False, default=0)
+    image = models.URLField('Image', blank=True)
 
     def __str__(self):
-        return self.post_title
+        return self.title
 
     # Get the archives url. Maybe for duoshuo.
     def get_absolute_url(self):
@@ -56,45 +56,45 @@ class Post(models.Model):
         return "http://127.0.0.1:8000/%s" % path
 
     class Meta:
-        ordering = ['-post_date']
+        ordering = ['-datetime']
 
 
 class Link(models.Model):
-    link_name = models.CharField('Name', max_length=30, blank=True)
-    link_url = models.URLField('Url', unique=True)
-    link_description = models.TextField('Description', blank=True)
-    link_image = models.URLField('Image', blank=True)
+    title = models.CharField('Title', max_length=30, blank=True)
+    url = models.URLField('Url', unique=True)
+    description = models.TextField('Description', blank=True)
+    image = models.URLField('Image', blank=True)
 
     def __str__(self):
-        return self.link_name
+        return self.title
 
 
 class Tag(models.Model):
-    tag_name = models.CharField('Name', max_length=30)
-    tag_alias = models.CharField('Alias', max_length=30, blank=True, unique=True, default=tag_name)
+    title = models.CharField('Title', max_length=30)
+    alias = models.CharField('Alias', max_length=30, blank=True, unique=True, default=title)
 
     def __str__(self):
-        return self.tag_name
+        return self.title
 
 
 class Comment(models.Model):
-    comment_post_id = models.ForeignKey('Post')
-    comment_author = models.CharField('Author', max_length=30)
-    comment_author_email = models.EmailField('Email', blank=True)
-    comment_author_url = models.URLField('Url', blank=True)
-    comment_author_ip = models.GenericIPAddressField('IP')
-    comment_date = models.DateTimeField('Date', auto_now_add=True)
-    comment_content = models.TextField('Content')
-    comment_parent = models.ForeignKey('self')
+    post_id = models.ForeignKey('Post')
+    author = models.CharField('Author', max_length=30)
+    author_email = models.EmailField('Email', blank=True)
+    author_url = models.URLField('Url', blank=True)
+    author_ip = models.GenericIPAddressField('IP')
+    datetime = models.DateTimeField('Date', auto_now_add=True)
+    content = models.TextField('Content')
+    parent = models.ForeignKey('self')
 
     def __str__(self):
-        return self.comment_content
+        return self.content
 
 
 class Category(models.Model):
-    meta_name = models.CharField('Name', max_length=30)
-    meta_alias = models.CharField('Alias', max_length=30, blank=True, unique=True, default=meta_name)
-    meta_description = models.TextField('Description', blank=True)
+    title = models.CharField('Title', max_length=30)
+    alias = models.CharField('Alias', max_length=30, blank=True, unique=True, default=title)
+    description = models.TextField('Description', blank=True)
 
     def __str__(self):
-        return self.meta_name
+        return self.title

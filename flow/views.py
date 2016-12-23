@@ -8,7 +8,7 @@ from django.contrib.syndication.views import Feed
 
 
 def home(request):
-    posts = Post.objects.filter(post_status=True)
+    posts = Post.objects.filter(status=True)
     paginator = Paginator(posts, MAXIMUM_OF_PAGE)
     page = request.GET.get('page')
     try:
@@ -23,7 +23,7 @@ def home(request):
 def detail(request, id):
     try:
         post = Post.objects.get(id=str(id))
-        post.post_views += 1
+        post.views += 1
         post.save()
     except Post.DoesNotExist:
         raise Http404
@@ -32,7 +32,7 @@ def detail(request, id):
 
 def archives(request):
     try:
-        post_list = Post.objects.filter(post_status=True)
+        post_list = Post.objects.filter(status=True)
     except Post.DoesNotExist:
         raise Http404
     return render(request, 'archives.html', {'post_list': post_list,
@@ -41,7 +41,7 @@ def archives(request):
 
 def search_tag(request, tag):
     try:
-        post_list = Post.objects.filter(post_tag=tag)
+        post_list = Post.objects.filter(tag=tag)
     except Post.DoesNotExist:
         raise Http404
     return render(request, 'tag.html', {'post_list': post_list})
@@ -53,7 +53,7 @@ def blog_search(request):
         if not s:
             return render(request, 'home.html')
         else:
-            post_list = Post.objects.filter(post_title__icontains=s)
+            post_list = Post.objects.filter(title__icontains=s)
             if len(post_list) == 0:
                 return render(request, 'archives.html', {'post_list': post_list,
                                                          'error': True})
@@ -69,21 +69,21 @@ class RSSFeed(Feed):
     description = "RSS feed - blog posts"
 
     def items(self):
-        return Post.objects.order_by('-post_date')
+        return Post.objects.order_by('-datetime')
 
     def item_title(self, item):
-        return item.post_title
+        return item.title
 
     def item_pubdate(self, item):
-        return item.post_date
+        return item.datetime
 
     def item_description(self, item):
-        return item.post_content
+        return item.content
 
 
 def post_meta(request, alias):
     try:
-        meta_list = PostMeta.objects.filter(post_alias=alias)
+        post = PostMeta.objects.filter(alias=alias)
     except Post.DoesNotExist:
         raise Http404
-    return render(request, 'postmeta.html', {'meta_list': meta_list[0]})
+    return render(request, 'postmeta.html', {'post': post[0]})
