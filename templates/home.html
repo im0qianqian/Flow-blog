@@ -5,21 +5,35 @@
         {% for post in post_list %}
             <section class="post">
                 <header class="post-header">
-                    <h2 class="post-title"><a href="{{ post.post_alias }}{% url "archives" id=post.id %}">{{ post.post_title }}</a></h2>
-
-                    <p class="post-meta">
-                        Time: <a class="post-author" href="#">{{ post.post_date |date:"Y /m /d" }}</a> <a
-                            class="post-category post-category-js" href="#">{{ post.post_category }}</a>
-                    </p>
+                    <h1 class="post-title"><a href="{% url "detail" id=post.id %}">{{ post.post_title }}</a></h1>
+                    <div class="post-meta">
+                        @ {{ post.post_author }} / {{ post.post_date | date:"Y /m /d" }}
+                        / <span class="post-category post-category-js">{{ post.post_category }}</span>
+                        {% if post.post_image %}
+                            <div><img class="post-images" src="{{ post.post_image }}"/></div>
+                        {% endif %}
+                    </div>
                 </header>
-
                 <div class="post-description">
                     <p>
                         {{ post.post_excerpt }}
                     </p>
                 </div>
-                <a class="pure-button" href="{% url "archives" id=post.id %}">Read More >>> </a>
+                <a class="pure-button" href="{% url "detail" id=post.id %}">Read More >>> </a>
             </section>
         {% endfor %}
+        {% if post_list.object_list and post_list.paginator.num_pages > 1 %}
+            <div>
+                <ul class="pager pure-button">
+                    {% if post_list.has_previous %}
+                        <li><a href="?page={{ post_list.previous_page_number }}">上一页</a></li>
+                    {% endif %}
+
+                    {% if post_list.has_next %}
+                        <li><a href="?page={{ post_list.next_page_number }}">下一页</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        {% endif %}
     </div>
 {% endblock %}

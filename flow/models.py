@@ -34,8 +34,8 @@ class Post(models.Model):
         return self.post_title
 
     # Get the archives url. Maybe for duoshuo.
-    def get_url(self):
-        path = self.post_alias + reverse('archives', kwargs={'id': self.id})
+    def get_absolute_url(self):
+        path = self.post_alias + reverse('detail', kwargs={'id': self.id})
         return "http://127.0.0.1:8000/%s" % path
 
 

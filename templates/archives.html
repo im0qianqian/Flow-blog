@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="posts">
+        {% if error %}
+            <h2 class="post-title">NOT Found</h2>
+        {% else %}
+            {% for post in post_list %}
+                <section class="post">
+                    <header class="post-header">
+                        <h2 class="post-title"><a href="{% url "detail" id=post.id %}">{{ post.post_title }}</a></h2>
+
+                        <p class="post-meta">
+                            Time: <a class="post-author" href="#">{{ post.post_date |date:"Y /m /d" }}</a>
+                            {{ post.post_category }}
+                            <a class="post-category post-category-js"
+                               href="{% url "search_tag" tag=post.post_category %}">{{ post.post_category }}</a>
+                        </p>
+                    </header>
+                </section>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}
