@@ -15,3 +15,11 @@ DATABASE_CONFIG = {
     'HOST': '127.0.0.1',
     'PORT': '3306',
 }
+
+"""
+Installed:
+    pip install markdown
+    pip install django
+    pip install Pillow
+    pip install bootstrap
+"""

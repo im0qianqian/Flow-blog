@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from mysite import views
+from flow import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'', views.index),
+    url(r'^$', views.home),
+    url(r'^[\w /]*(?P<id>\d+).html$', views.archives, name='archives'),
 ]
