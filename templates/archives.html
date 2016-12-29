@@ -10,7 +10,7 @@
                     <header class="post-header">
                         <h4 class="post-title"><a href="{% url "detail" id=post.id %}">{{ post.title }}</a></h4>
                         <p class="post-meta">
-                            Time: <a class="post-author" href="#">{{ post.datetime |date:"Y /m /d" }}</a>
+                            Time: <a class="post-author" href="#">{{ post.created |date:"Y /m /d" }}</a>
                             {{ post.category }}
                             <a class="post-category post-category-js"
                                href="{% url "search_tag" tag=post.category %}">{{ post.category }}</a>

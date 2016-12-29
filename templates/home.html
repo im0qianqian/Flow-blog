@@ -3,11 +3,17 @@
 {% block content %}
     <div class="posts">
         {% for post in post_list %}
-            <section class="post">
+            <div class="x-post-item">
+                <h1><a href="{% url "detail" id=post.id %}">{{ post.title }}</a></h1>
+                {% if post.image %}
+                    <div class="x-post-item-cover">
+                        <a href="{% url "detail" id=post.id %}"><img class="post-images" src="{{ post.image }}"/></a>
+                    </div>
+                {% endif %}
+            <div class="x-post-item-meta"><date>{{ post.created }}</date><cate><a href="#!c/essay">随笔</a></cate></div>
                 <header class="post-header">
-                    <h1 class="post-title"><a href="{% url "detail" id=post.id %}">{{ post.title }}</a></h1>
                     <div class="post-meta">
-                        @ {{ post.author }} / {{ post.datetime | date:"Y /m /d" }}
+                        @ {{ post.author }} / {{ post.created | date:"Y /m /d" }}
                         / <span class="post-category post-category-js">{{ post.category }}</span>
                         {% if post.image %}
                             <div><img class="post-images" src="{{ post.image }}"/></div>
@@ -20,7 +26,7 @@
                     </p>
                 </div>
                 <a class="pure-button" href="{% url "detail" id=post.id %}">Read More >>> </a>
-            </section>
+            </div>
         {% endfor %}
         {% if post_list.object_list and post_list.paginator.num_pages > 1 %}
             <div>

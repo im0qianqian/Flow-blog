@@ -7,7 +7,7 @@
             <header class="post-header">
                 <h2 class="post-title">{{ post.title }}</h2>
                 <p class="post-meta">
-                    @ {{ post.author }} / {{ post.datetime | date:"Y /m /d" }}
+                    @ {{ post.author }} / {{ post.created | date:"Y /m /d" }}
                     / <span class="post-category post-category-js">{{ post.category }}</span>
                     {% if post.image %}
                         <div style="text-align: center;"><img style="margin: 2% auto;" src="{{ post.image }}"/></div>

@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect
-from .config import *
 from .models import *
+from flow.config import *
 from django.http import Http404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.views.generic import ListView
 from django.contrib.syndication.views import Feed
 
 
@@ -69,13 +68,13 @@ class RSSFeed(Feed):
     description = "RSS feed - blog posts"
 
     def items(self):
-        return Post.objects.order_by('-datetime')
+        return Post.objects.order_by('-created')
 
     def item_title(self, item):
         return item.title
 
     def item_pubdate(self, item):
-        return item.datetime
+        return item.created
 
     def item_description(self, item):
         return item.content
@@ -83,7 +82,11 @@ class RSSFeed(Feed):
 
 def post_meta(request, alias):
     try:
-        post = PostMeta.objects.filter(alias=alias)
+        post = Page.objects.filter(alias=alias)
     except Post.DoesNotExist:
         raise Http404
-    return render(request, 'postmeta.html', {'post': post[0]})
+    return render(request, 'page.html', {'post': post[0]})
+
+def links(request):
+    links = Link.objects.all()
+    return render(request,'links.html',{'links':links})

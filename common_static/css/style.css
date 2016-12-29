@@ -40,7 +40,13 @@ h3 {
     background: rgb(61, 79, 93);
     color: #fff;
 }
-
+.x-logo {
+    display: block;
+    margin: auto;
+    width: 128px;
+    height: 128px;
+    border-radius: 128px;
+}
 .brand-title,
 .brand-tagline {
     margin: 0;
@@ -59,8 +65,7 @@ h3 {
     list-style: none;
 }
 .nav-item {
-    display: inline-block;
-    *display: inline;
+    display: grid;
     zoom: 1;
 }
 .nav-item a {
@@ -166,8 +171,7 @@ h3 {
     }
 
     .header {
-        margin: 80% 2em 0;
-        text-align: right;
+        margin: 20% 2em 0;
     }
 
     .sidebar {
