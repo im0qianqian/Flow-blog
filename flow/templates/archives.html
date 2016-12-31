@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="x-main">
-        {% if error %}
+        {% if not post_list %}
             <h2>404 NOT Found</h2>
         {% else %}
             {% for post in post_list %}
@@ -10,7 +10,6 @@
                     <h2><a href="{% url "detail" id=post.id %}">{{ post.title }}</a></h2>
                     <div class="x-post-item-meta">
                         <date>{{ post.created | date:"Y /m /d" }}</date>
-                        <cate><a href="{% url "search_tag" tag=post.category %}">{{ post.category }}</a></cate>
                     </div>
                 </div>
             {% endfor %}

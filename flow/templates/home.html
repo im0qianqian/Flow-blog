@@ -11,8 +11,10 @@
                     </div>
                 {% endif %}
                 <div class="x-post-item-meta">
+                    <cate>{{ post.author }}</cate>
                     <date>{{ post.created }}</date>
                     <cate>{{ post.category }}</cate>
+                    <cate>{{ post.views }} views</cate>
                 </div>
                 <div class="x-post-item-cont">
                     {{ post.excerpt }}

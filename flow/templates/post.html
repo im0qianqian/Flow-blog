@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load custom_markdown %}
+
+{% block content %}
+    <div class="x-main">
+        <div class="x-post-item">
+            <h1>{{ post.title }}</h1>
+            <div class="x-post-item-meta">
+                <cate>{{ post.author }}</cate>
+                <date>{{ post.created | date:"Y /m /d" }}</date>
+                <cate>{{ post.category }}</cate>
+                <cate>{{ post.views }} views</cate>
+            </div>
+            {% if post.image %}
+                <img src="{{ post.image }}"/>
+            {% endif %}
+            <div class="x-post-item-cont">
+                {{ post.content|custom_markdown }}
+            </div>
+        </div>
+        {% include "duoshuo.html" %}
+    </div>
+{% endblock %}

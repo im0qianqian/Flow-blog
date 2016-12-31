@@ -7,7 +7,8 @@ from django.contrib.syndication.views import Feed
 
 
 def home(request):
-    posts = Post.objects.filter(status=True)
+    # 选出所有未隐藏的文章并同时链接查询出其作者与分类
+    posts = Post.objects.filter(status=True).select_related('author', 'category')
     paginator = Paginator(posts, MAXIMUM_OF_PAGE)
     page = request.GET.get('page')
     try:
@@ -20,30 +21,30 @@ def home(request):
 
 
 def detail(request, id):
-    try:
-        post = Post.objects.get(id=str(id))
+    # 链接用户表与分类表多表查询
+    post = Post.objects.filter(id=id, status=True).select_related('author', 'category')
+    if len(post) == 0:
+        raise Http404
+    else:
+        post = post[0]
         post.views += 1
         post.save()
-    except Post.DoesNotExist:
-        raise Http404
-    return render(request, 'post.html', {'post': post})
+        return render(request, 'post.html', {'post': post})
 
 
 def archives(request):
-    try:
-        post_list = Post.objects.filter(status=True)
-    except Post.DoesNotExist:
-        raise Http404
-    return render(request, 'archives.html', {'post_list': post_list,
-                                             'error': False})
+    post_list = Post.objects.filter(status=True)
+    return render(request, 'archives.html', {'post_list': post_list})
 
 
 def search_tag(request, tag):
-    try:
-        post_list = Post.objects.filter(tag=tag)
-    except Post.DoesNotExist:
-        raise Http404
-    return render(request, 'tag.html', {'post_list': post_list})
+    # 与Tag多对多链接 结果集放在res中
+    post_list = Post.objects.prefetch_related('tag')
+    res = []
+    for post in post_list:
+        if post.tag.filter(title=tag):
+            res.append(post)
+    return render(request, 'tag.html', {'post_list': res})
 
 
 def blog_search(request):
@@ -53,18 +54,13 @@ def blog_search(request):
             return render(request, 'home.html')
         else:
             post_list = Post.objects.filter(title__icontains=s)
-            if len(post_list) == 0:
-                return render(request, 'archives.html', {'post_list': post_list,
-                                                         'error': True})
-            else:
-                return render(request, 'archives.html', {'post_list': post_list,
-                                                         'error': False})
+            return render(request, 'archives.html', {'post_list': post_list})
     return redirect('/')
 
 
 class RSSFeed(Feed):
     title = "RSS feed - article"
-    link = "feeds/posts/"
+    link = "feed/posts/"
     description = "RSS feed - blog posts"
 
     def items(self):
@@ -77,19 +73,21 @@ class RSSFeed(Feed):
         return item.created
 
     def item_description(self, item):
-        return item.content
+        return item.excerpt
+
+
+# 获取当前所创建的所有页面
+def get_page():
+    return Page.objects.only('title', 'alias')
 
 
 def post_meta(request, alias):
-    try:
-        post = Page.objects.filter(alias=alias)
-    except Post.DoesNotExist:
-        raise Http404
+    post = Page.objects.filter(alias=alias)
     if len(post) == 0:
-        return render(request, 'post.html', {'error': True})
+        raise Http404
     else:
         post[0].id = -post[0].id
-        return render(request, 'post.html', {'post': post[0], 'error': False})
+        return render(request, 'page.html', {'post': post[0]})
 
 
 def links(request):

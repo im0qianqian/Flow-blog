@@ -16,16 +16,15 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from flow import views
-from flow.views import RSSFeed
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.home),
     url(r'^detail/(?P<id>\d+).html$', views.detail, name='detail'),
-    url(r'^archives/$', views.archives, name='archives'),
-    url(r'^links/$', views.links, name='links'),
-    url(r'^tag/(?P<tag>\w+)/$', views.search_tag, name='search_tag'),
+    url(r'^archives$', views.archives, name='archives'),
+    url(r'^links$', views.links, name='links'),
+    url(r'^tag/(?P<tag>\w+)/?$', views.search_tag, name='search_tag'),
     url(r'^search/$', views.blog_search, name='search'),
-    url(r'^feed/$', RSSFeed(), name="RSS"),
+    url(r'^feed$', views.RSSFeed(), name="RSS"),
     url(r'^(?P<alias>\w+)$', views.post_meta, name="post_meta"),
 ]

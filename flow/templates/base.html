@@ -6,32 +6,32 @@
     <meta name="description" content="A layout example that shows off a blog page with a list of posts.">
     <title>{{ BLOG_TITLE }}</title>
     <link href="/static/css/prism.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="http://i.siitake.cn/css/reset.css"/>
-    <link rel="stylesheet" type="text/css" href="http://i.siitake.cn/css/function.css"/>
-    <link rel="stylesheet" type="text/css" href="http://i.siitake.cn/css/animation.css"/>
-    <link rel="stylesheet" type="text/css" href="http://i.siitake.cn/css/style.css"/>
-    <link rel="stylesheet" type="text/css" href="http://i.siitake.cn/css/media.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/function.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/animation.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/media.css"/>
 </head>
 <body>
 <div class="g-bd1 f-cb">
     <div class="g-sd1">
         <div class="x-logo-box">
-            <img class="x-logo" src="{{ LOGO_IMAGE }}">
+            <a href="{{ SITE_URL }}"><img class="x-logo" src="{{ LOGO_IMAGE }}"></a>
         </div>
         <div class="x-menu-box">
             <ul class="x-menu">
-                <li><a href="/">主页</a></li>
-                <li><a href="/archives/">文章</a></li>
-                <li><a href="/links/">链接</a></li>
-                <li><a href="/about">关于</a></li>
-                <li><a href="https://github.com/im0qianqian">仓库</a></li>
-                <li><a href="http://weibo.com/im0qianqian">微博</a></li>
-                <li><a href="/feed/">订阅</a></li>
-                <li style="color: #000;">
-                    <form class="pure-form" action="/search/" method="get">
-                        <input class="pure-input-3-3" type="text" name="s" placeholder="search">
+                <li>
+                    <form class="x-menu-search" action="/search/" method="get">
+                        <input type="text" name="s" placeholder="search">
                     </form>
                 </li>
+                <li><a href="{{ SITE_URL }}">主页</a></li>
+                {% for page in page_list %}
+                    <li><a href="{% url "post_meta" alias=page.alias %}">{{ page.title }}</a></li>
+                {% endfor %}
+                <li><a href="/archives">文章</a></li>
+                <li><a href="/links">链接</a></li>
+                <li><a href="/feed">订阅</a></li>
             </ul>
         </div>
         <div class="x-copy">Version: 1.1.0(n) β</div>
