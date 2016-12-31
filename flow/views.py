@@ -78,7 +78,7 @@ class RSSFeed(Feed):
 
 # 获取当前所创建的所有页面
 def get_page():
-    return Page.objects.only('title', 'alias')
+    return Page.objects.only('title', 'alias',)
 
 
 def post_meta(request, alias):
