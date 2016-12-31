@@ -1,23 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="posts">
+    <div class="x-main">
         {% if error %}
-            <h2 class="post-title">404 NOT Found</h2>
+            <h2>404 NOT Found</h2>
         {% else %}
             {% for post in post_list %}
-                <section class="post">
-                    <header class="post-header">
-                        <h4 class="post-title"><a href="{% url "detail" id=post.id %}">{{ post.title }}</a></h4>
-                        <p class="post-meta">
-                            Time: <a class="post-author" href="#">{{ post.created |date:"Y /m /d" }}</a>
-                            {{ post.category }}
-                            <a class="post-category post-category-js"
-                               href="{% url "search_tag" tag=post.category %}">{{ post.category }}</a>
-                        </p>
-                    </header>
-                </section>
+                <div class="x-post-item">
+                    <h2><a href="{% url "detail" id=post.id %}">{{ post.title }}</a></h2>
+                    <div class="x-post-item-meta">
+                        <date>{{ post.created | date:"Y /m /d" }}</date>
+                        <cate><a href="{% url "search_tag" tag=post.category %}">{{ post.category }}</a></cate>
+                    </div>
+                </div>
             {% endfor %}
+            {% include "duoshuo.html" %}
         {% endif %}
     </div>
 {% endblock %}

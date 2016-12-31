@@ -1,13 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-{% for link in links %}
-    <p>    {{ link.title }}
-        　　{{ link.url }}</p>
-{% endfor %}
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="x-main">
+        <div class="x-post-item">
+            <h1>小伙伴们</h1>
+            <div class="x-post-item-cont">
+                {% for link in links %}
+                    <div class="x-linkitem">
+                        <a href="{{ link.url }}" target="_blank">
+                            {% if link.image %}
+                                <img class="x-linklogo" src="{{ link.image }}">
+                            {% endif %}
+                            <h2 class="x-linkname">{{ link.title }}</h2>
+                            <span class="x-linkdesc">{{ link.description }}</span></a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% include "duoshuo.html" %}
+    </div>
+{% endblock %}

@@ -1,4 +1,5 @@
 from django.db import models
+from .config import *
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 
@@ -28,7 +29,7 @@ class Post(models.Model):
     # Get the archives url. Maybe for duoshuo.
     def get_absolute_url(self):
         path = reverse('detail', kwargs={'id': self.id})
-        return "http://127.0.0.1:8000/%s" % path
+        return SITE_URL + path
 
     class Meta:
         ordering = ['-created']
@@ -43,6 +44,15 @@ class Page(models.Model):
 
     def __str__(self):
         return self.title
+
+        # Get the archives url. Maybe for duoshuo.
+
+    def get_absolute_url(self):
+        path = reverse('post_meta', kwargs={'alias': self.alias})
+        return SITE_URL + path
+
+    class Meta:
+        ordering = ['-created']
 
 
 class Link(models.Model):

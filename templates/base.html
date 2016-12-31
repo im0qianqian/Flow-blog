@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A layout example that shows off a blog page with a list of posts.">
     <title>{{ BLOG_TITLE }}</title>
-    <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.1/build/pure-min.css">
     <link href="/static/css/prism.css" rel="stylesheet">
-    <link rel="stylesheet" href="http://labfile.oss.aliyuncs.com/courses/487/grids-responsive-min.css">
-    <link rel="stylesheet" href="http://i.siitake.cn/css/style.css">
+    <link rel="stylesheet" type="text/css" href="http://i.siitake.cn/css/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="http://i.siitake.cn/css/function.css"/>
+    <link rel="stylesheet" type="text/css" href="http://i.siitake.cn/css/animation.css"/>
+    <link rel="stylesheet" type="text/css" href="http://i.siitake.cn/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="http://i.siitake.cn/css/media.css"/>
 </head>
 <body>
 <div class="g-bd1 f-cb">
@@ -18,12 +20,13 @@
         </div>
         <div class="x-menu-box">
             <ul class="x-menu">
-                <li><a href="/">Home</a></li>
-                <li><a href="/archives/">Archive</a></li>
-                <li><a href="https://github.com/im0qianqian">Github</a></li>
-                <li><a href="http://weibo.com/im0qianqian">Weibo</a></li>
-                <li><a href="/feed/">Feed</a></li>
-                <li><a href="/about">About Me</a></li>
+                <li><a href="/">主页</a></li>
+                <li><a href="/archives/">文章</a></li>
+                <li><a href="/links/">链接</a></li>
+                <li><a href="/about">关于</a></li>
+                <li><a href="https://github.com/im0qianqian">仓库</a></li>
+                <li><a href="http://weibo.com/im0qianqian">微博</a></li>
+                <li><a href="/feed/">订阅</a></li>
                 <li style="color: #000;">
                     <form class="pure-form" action="/search/" method="get">
                         <input class="pure-input-3-3" type="text" name="s" placeholder="search">

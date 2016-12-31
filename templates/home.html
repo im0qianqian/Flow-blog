@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="posts">
+    <div class="x-main">
         {% for post in post_list %}
             <div class="x-post-item">
                 <h1><a href="{% url "detail" id=post.id %}">{{ post.title }}</a></h1>
@@ -10,36 +10,31 @@
                         <a href="{% url "detail" id=post.id %}"><img class="post-images" src="{{ post.image }}"/></a>
                     </div>
                 {% endif %}
-            <div class="x-post-item-meta"><date>{{ post.created }}</date><cate><a href="#!c/essay">随笔</a></cate></div>
-                <header class="post-header">
-                    <div class="post-meta">
-                        @ {{ post.author }} / {{ post.created | date:"Y /m /d" }}
-                        / <span class="post-category post-category-js">{{ post.category }}</span>
-                        {% if post.image %}
-                            <div><img class="post-images" src="{{ post.image }}"/></div>
-                        {% endif %}
-                    </div>
-                </header>
-                <div class="post-description">
-                    <p>
-                        {{ post.excerpt }}
-                    </p>
+                <div class="x-post-item-meta">
+                    <date>{{ post.created }}</date>
+                    <cate>{{ post.category }}</cate>
                 </div>
-                <a class="pure-button" href="{% url "detail" id=post.id %}">Read More >>> </a>
+                <div class="x-post-item-cont">
+                    {{ post.excerpt }}
+                </div>
+                <more><a href="{% url "detail" id=post.id %}">Read More >>> </a></more>
             </div>
         {% endfor %}
-        {% if post_list.object_list and post_list.paginator.num_pages > 1 %}
-            <div>
-                <ul class="pager pure-button">
+        <div class="x-page-pointer">
+            {% if post_list.object_list and post_list.paginator.num_pages > 1 %}
+                <ul>
                     {% if post_list.has_previous %}
-                        <li><a href="?page={{ post_list.previous_page_number }}">上一页</a></li>
+                        <li class="x-next" id="x-newer-li">
+                            <a href="?page={{ post_list.previous_page_number }}" id="x-newer">Newer →</a>
+                        </li>
                     {% endif %}
-
                     {% if post_list.has_next %}
-                        <li><a href="?page={{ post_list.next_page_number }}">下一页</a></li>
+                        <li class="x-previous" id="x-older-li">
+                            <a href="?page={{ post_list.next_page_number }}" id="x-older">← Older</a>
+                        </li>
                     {% endif %}
                 </ul>
-            </div>
-        {% endif %}
+            {% endif %}
+        </div>
     </div>
 {% endblock %}

@@ -85,8 +85,13 @@ def post_meta(request, alias):
         post = Page.objects.filter(alias=alias)
     except Post.DoesNotExist:
         raise Http404
-    return render(request, 'page.html', {'post': post[0]})
+    if len(post) == 0:
+        return render(request, 'post.html', {'error': True})
+    else:
+        post[0].id = -post[0].id
+        return render(request, 'post.html', {'post': post[0], 'error': False})
+
 
 def links(request):
     links = Link.objects.all()
-    return render(request,'links.html',{'links':links})
+    return render(request, 'links.html', {'links': links})
