@@ -39,7 +39,7 @@ def search_tag(request, tag):
     for post in post_list:
         if post.tag.filter(title=tag):
             res.append(post)
-    return render(request, 'tag.html', {'post_list': res})
+    return render(request, 'archives.html', {'post_list': res})
 
 
 def blog_search(request):
@@ -98,6 +98,8 @@ def category(request, category):
 def categories(request):
     vlist = {}
     category_list = Category.objects.all()
+    tag_list = Tag.objects.all()
     for category in category_list:
         vlist[category.title] = Post.objects.filter(category=category.id)
-    return render(request, 'categories.html', {'category_list': vlist})
+    return render(request, 'categories.html', {'category_list': vlist,
+                                               'tag_list': tag_list})

@@ -34,12 +34,3 @@ def get_config(request):
             'LOGO_IMAGE': LOGO_IMAGE,
             'page_list': get_page(),
             }
-
-
-"""
-Installed:
-    pip install markdown
-    pip install django
-    pip install Pillow
-    pip install bootstrap
-"""

@@ -26,6 +26,6 @@ urlpatterns = [
     url(r'^categories/?$', views.categories, name='categories'),
     url(r'^category/(?P<category>\w+)/?$', views.category, name='category'),
     url(r'^search/$', views.blog_search, name='search'),
-    url(r'^feed$', views.RSSFeed(), name="RSS"),
+    url(r'^feed/?$', views.RSSFeed(), name="RSS"),
     url(r'^(?P<alias>\w+)$', views.post_meta, name="post_meta"),
 ]
