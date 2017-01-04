@@ -3,17 +3,29 @@
 {% block content %}
     <div class="x-main">
         {% if not post_list %}
-            <h2>404 NOT Found</h2>
+            <h1>404 Not Found!</h1>
         {% else %}
             {% for post in post_list %}
                 <div class="x-post-item">
-                    <h2><a href="{% url "detail" id=post.id %}">{{ post.title }}</a></h2>
+                    <h1><a href="{% url "detail" id=post.id %}">{{ post.title }}</a></h1>
+                    {% if post.image %}
+                        <div class="x-post-item-cover">
+                            <a href="{% url "detail" id=post.id %}"><img class="post-images"
+                                                                         src="{{ post.image }}"/></a>
+                        </div>
+                    {% endif %}
                     <div class="x-post-item-meta">
-                        <date>{{ post.created | date:"Y /m /d" }}</date>
+                        <cate>{{ post.author }}</cate>
+                        <date>{{ post.created }}</date>
+                        <cate><a href="{% url "category" category=post.category %}">{{ post.category }}</a></cate>
+                        <cate>{{ post.views }} views</cate>
                     </div>
+                    <div class="x-post-item-cont">
+                        {{ post.excerpt }}
+                    </div>
+                    <more><a href="{% url "detail" id=post.id %}">Read More >>> </a></more>
                 </div>
             {% endfor %}
-            {% include "duoshuo.html" %}
         {% endif %}
     </div>
 {% endblock %}

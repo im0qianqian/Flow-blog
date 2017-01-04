@@ -32,11 +32,6 @@ def detail(request, id):
         return render(request, 'post.html', {'post': post})
 
 
-def archives(request):
-    post_list = Post.objects.filter(status=True)
-    return render(request, 'archives.html', {'post_list': post_list})
-
-
 def search_tag(request, tag):
     # 与Tag多对多链接 结果集放在res中
     post_list = Post.objects.prefetch_related('tag')
@@ -78,7 +73,7 @@ class RSSFeed(Feed):
 
 # 获取当前所创建的所有页面
 def get_page():
-    return Page.objects.only('title', 'alias',)
+    return Page.objects.only('title', 'alias', )
 
 
 def post_meta(request, alias):
@@ -93,3 +88,16 @@ def post_meta(request, alias):
 def links(request):
     links = Link.objects.all()
     return render(request, 'links.html', {'links': links})
+
+
+def category(request, category):
+    post_list = Post.objects.filter(category__title=category, status=True)
+    return render(request, 'archives.html', {'post_list': post_list})
+
+
+def categories(request):
+    vlist = {}
+    category_list = Category.objects.all()
+    for category in category_list:
+        vlist[category.title] = Post.objects.filter(category=category.id)
+    return render(request, 'categories.html', {'category_list': vlist})

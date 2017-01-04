@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="x-main">
+        <h1>分类归档</h1>
+        <div class="categories-title">
+            {% for key in category_list.keys %}
+                <a class="tag" href="{% url "category" category=key %}">{{ key }}</a>
+            {% endfor %}
+        </div>
+        <div class="categories-content">
+            {% for key,values in category_list.items %}
+                {% if values %}
+                    <div class="categories-item">
+                        <h2>{{ key }}</h2>
+                        <ul>
+                            {% for page in values %}
+                                <li><a href="{% url "detail" id=page.id %}">{{ page.title }}</a>
+                                    <span class="date">{{ page.created }}</span>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        {% include "duoshuo.html" %}
+    </div>
+{% endblock %}
