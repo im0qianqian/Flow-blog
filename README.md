@@ -39,11 +39,11 @@ Default site url: http://127.0.0.1:8000/ and sign in at http://127.0.0.1:8000/ad
 ### DBMS:Mysql
 
     DATABASE_CONFIG = {
-        'NAME':         'pyblog',       #DB_NAME
-        'USER':         'root',         #Mysql username
-        'PASSWORD':     'im0qianqian',  #Mysql user_password
-        'HOST':         '127.0.0.1',    #Mysql host
-        'PORT':         '3306',         #Mysql service port
+        'NAME':         'pyblog',       # Datebase name
+        'USER':         'root',         # Mysql username
+        'PASSWORD':     'im0qianqian',  # Mysql user_password
+        'HOST':         '127.0.0.1',    # Mysql host
+        'PORT':         '3306',         # Mysql service port
     }
 
 ### config
