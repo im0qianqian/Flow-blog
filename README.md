@@ -39,18 +39,18 @@ Default site url: http://127.0.0.1:8000/ and sign in at http://127.0.0.1:8000/ad
 ### DBMS:Mysql
 
     DATABASE_CONFIG = {
-        'NAME': 'pyblog',   #DB_NAME
-        'USER': 'root',     #Mysql username
-        'PASSWORD': 'im0qianqian',  #Mysql user_password
-        'HOST': '127.0.0.1',    #Mysql host
-        'PORT': '3306',     #Mysql service port
+        'NAME':         'pyblog',       #DB_NAME
+        'USER':         'root',         #Mysql username
+        'PASSWORD':     'im0qianqian',  #Mysql user_password
+        'HOST':         '127.0.0.1',    #Mysql host
+        'PORT':         '3306',         #Mysql service port
     }
 
 ### config
 
-    MAXIMUM_OF_PAGE = 3
-    SITE_URL = "http://localhost/"
-    BLOG_TITLE = "FLOW BLOG"
-    BLOG_DESCRIPTION = "Snow Memory"
-    LOGO_IMAGE = "http://[An image].jpg"
+    MAXIMUM_OF_PAGE =   3
+    SITE_URL =          "http://localhost/"
+    BLOG_TITLE =        "FLOW BLOG"
+    BLOG_DESCRIPTION =  "Snow Memory"
+    LOGO_IMAGE =        "http://[An image].jpg"
 
