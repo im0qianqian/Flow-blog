@@ -1,26 +1,20 @@
 """
-There is some config about database.
-
-E.g:
-    database name
-    user name
-    user password
-    The database server 's ip and port.
+This is some configuration.
 """
 # import flow.models as md
 
 # Mysql数据库配置
 DATABASE_CONFIG = {
-    'NAME': 'pyblog',
-    'USER': 'root',
-    'PASSWORD': 'im0qianqian',
-    'HOST': '127.0.0.1',
-    'PORT': '3306',
+    'NAME': 'pyblog',   #DB_NAME
+    'USER': 'root',     #Mysql username
+    'PASSWORD': 'im0qianqian',  #Mysql user_password
+    'HOST': '127.0.0.1',    #Mysql host
+    'PORT': '3306',     #Mysql service port
 }
 
 # 每页显示最大文章数量
 MAXIMUM_OF_PAGE = 3
-SITE_URL = "http://127.0.0.1:8000"
+SITE_URL = "http://10.10.44.207"
 BLOG_TITLE = "FLOW BLOG"
 BLOG_DESCRIPTION = "Snow Memory"
 LOGO_IMAGE = "http://static.dreamwings.cn/wp-content/uploads/2016/06/10102wq.jpg"
