@@ -6,7 +6,7 @@ You can create your own page, which will be shown on the home page, but unfortun
 
 Blog supports multiple users to register and manage at the same time, but when the new user needs administrator authorization, the administrator can grant the user the appropriate administrative privileges, and the user can meet the permissions to grant it to others. In order to facilitate management, we introduced the concept of group, the group is equivalent to our authorized group of all users within the authorized.
 
-*Created by qianqian*
+***Created by qianqian***
 ## Development environment
 `Python 3.5 + django 1.10`
 
@@ -35,7 +35,7 @@ These dependencies are automatically installed:
 Default site url: http://127.0.0.1:8000/ and sign in at http://127.0.0.1:8000/admin/ .
 
 ## Settings
-**flow/config/__init__.py**
+**config file: flow/config/__init__.py**
 ### DBMS:Mysql
 
     DATABASE_CONFIG = {
