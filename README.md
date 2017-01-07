@@ -35,7 +35,7 @@ Default site url: http://127.0.0.1:8000/ and sign in at http://127.0.0.1:8000/ad
 
 ## Settings
 **config file: flow/config/__init__.py**
-### DBMS:Mysql
+### Mysql
 
     DATABASE_CONFIG = {
         'NAME':         'pyblog',       # Datebase name
@@ -45,11 +45,11 @@ Default site url: http://127.0.0.1:8000/ and sign in at http://127.0.0.1:8000/ad
         'PORT':         '3306',         # Mysql service port
     }
 
-### config
+### Config
 
     MAXIMUM_OF_PAGE =   3
     SITE_URL =          "http://localhost/"
     BLOG_TITLE =        "FLOW BLOG"
     BLOG_DESCRIPTION =  "Snow Memory"
     LOGO_IMAGE =        "http://[An image].jpg"
-
+    
