@@ -22,7 +22,6 @@ These dependencies are automatically installed:
 
     Django==1.10.4
     markdown==2.6.7
-    Pillow==3.4.2
     bootstrap-admin==0.3.7.1
     PyMySQL==0.7.9
     pytz=2016.10
