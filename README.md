@@ -51,6 +51,6 @@ Default site url: http://127.0.0.1:8000/ and sign in at http://127.0.0.1:8000/ad
     SITE_URL =          "http://localhost/"
     BLOG_TITLE =        "FLOW BLOG"
     BLOG_DESCRIPTION =  "Snow Memory"
-    LOGO_IMAGE =        "http://[An image].jpg"
+    LOGO_IMAGE =        "http://[An image].jpg"
 
 2017.1.7
