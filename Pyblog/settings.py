@@ -25,7 +25,7 @@ SECRET_KEY = 'q+l9=st5x@+r36gzu7y!uqo14jvtsvv&yqzuxq7hywo-)_+g*#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['10.10.44.207']
+ALLOWED_HOSTS = ['*',]
 
 # Application definition
 
@@ -129,6 +129,7 @@ STATICFILES_DIRS = (
 )
 
 # 显示执行的SQL语句
+"""
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -144,3 +145,4 @@ LOGGING = {
         },
     },
 }
+"""

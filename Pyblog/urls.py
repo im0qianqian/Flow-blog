@@ -18,7 +18,7 @@ from django.contrib import admin
 from flow import views
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r'^admin/?', admin.site.urls),
     url(r'^$', views.home),
     url(r'^detail/(?P<id>\d+).html$', views.detail, name='detail'),
     url(r'^links$', views.links, name='links'),
