@@ -1,3 +1,20 @@
+<br>
 <div class="x-comments">
-    我还差一个优雅的评论框~
+    <link rel="stylesheet" href="//dn-coding-net-public-file.qbox.me/Coding-Comments/v0.1.1/default.css">
+    <script type="text/javascript"
+            src="//dn-coding-net-public-file.qbox.me/Coding-Comments/v0.1.1/gitment.min.js"></script>
+    <div id="container"></div>
+    <script>
+        var clientId = '89e7245aa8c8b25f77cc355a55216d12'
+        var clientSecret = '510d401290ba5e25534966d1b4e1a0e119f5a6ca'
+        var gitment = new Gitment({
+            owner: 'wusisu',
+            repo: 'wusisu',
+            oauth: {
+                client_id: clientId,
+                client_secret: clientSecret,
+            },
+        })
+        document.getElementById('container').appendChild(gitment.render())
+    </script>
 </div>
