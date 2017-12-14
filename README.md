@@ -20,11 +20,11 @@ Blog supports multiple users to register and manage at the same time, but when t
 ## Requirements
 These dependencies are automatically installed:
 
-    Django==1.10.4
-    markdown==2.6.7
+    Django==1.11.8
+    markdown==2.6.9
     bootstrap-admin==0.3.7.1
-    PyMySQL==0.7.9
-    pytz=2016.10
+    PyMySQL==0.7.11
+    pytz==2017.3
 
 ## Quick Start
     python manage.py makemigrations
